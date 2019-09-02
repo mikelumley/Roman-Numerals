@@ -1,6 +1,8 @@
 import java.util.*;
 
 public class RomanNumeralConverter {
+    private static final int MIN_VALUE_OF_NUMERALS = 1;
+    private static final int MAX_VALUE_OF_NUMERALS = 3999;
     private TreeMap<Integer, String> romanNumerals;
 
     public RomanNumeralConverter() {
@@ -28,12 +30,20 @@ public class RomanNumeralConverter {
     public String convertIntegerToRomanNumeral(int integerToConvert) {
         StringBuilder romanNumeralOutput = new StringBuilder();
 
+        if(integerToConvert < MIN_VALUE_OF_NUMERALS) {
+            throw new RuntimeException("Error: Integer too small to convert");
+        }
+
+        if(integerToConvert > MAX_VALUE_OF_NUMERALS) {
+            throw new RuntimeException("Error: Integer too large to convert");
+        }
+
         for (Map.Entry<Integer, String> numeralAndValue : this.romanNumerals.entrySet()) {
             int numeralValue = numeralAndValue.getKey();
-            String numeral = numeralAndValue.getValue();
+            String numeralSymbol = numeralAndValue.getValue();
 
             while (integerToConvert >= numeralValue) {
-                romanNumeralOutput.append(numeral);
+                romanNumeralOutput.append(numeralSymbol);
                 integerToConvert -= numeralValue;
             }
         }

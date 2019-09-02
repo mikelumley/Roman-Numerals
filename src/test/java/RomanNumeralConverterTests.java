@@ -159,4 +159,16 @@ public class RomanNumeralConverterTests {
         String output = converter.convertIntegerToRomanNumeral(input);
         assertEquals("MMMCMXCIX", output);
     }
+
+    @Test(expected = RuntimeException.class)
+    public void Given_Input4000_When_ConvertingToRomanNumerals_Then_ThrowError() {
+        int input = 4000;
+        String output = converter.convertIntegerToRomanNumeral(input);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void Given_Input0_When_ConvertingToRomanNumerals_Then_ThrowError() {
+        int input = 0;
+        String output = converter.convertIntegerToRomanNumeral(input);
+    }
 }
